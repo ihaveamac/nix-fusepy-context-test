@@ -72,7 +72,7 @@ def main():
 
     logging.basicConfig(level=logging.DEBUG)
     fuse = FUSE(
-        Context(), args.mount, foreground=True, ro=True, allow_other=True)
+        Context(), args.mount, foreground=True, ro=True)
 
 
 if __name__ == '__main__':
