@@ -7,6 +7,7 @@ from __future__ import print_function, absolute_import, division
 import logging
 
 from errno import ENOENT
+from os import environ
 from stat import S_IFDIR, S_IFREG
 from time import time
 
@@ -71,6 +72,8 @@ def main():
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.DEBUG)
+    print('PATH:')
+    print('\n'.join(environ['PATH'].split(':')))
     fuse = FUSE(
         Context(), args.mount, foreground=True, ro=True)
 
