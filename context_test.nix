@@ -1,4 +1,4 @@
-{ lib, buildPythonApplication, fusepy }:
+{ lib, stdenv, buildPythonApplication, fusepy }:
 
 buildPythonApplication rec {
   pname = "context_test";
@@ -7,7 +7,9 @@ buildPythonApplication rec {
 
   src = ./.;
 
-  propagatedBuildInputs = [ fusepy ];
+  #propagatedBuildInputs = [ fusepy ];
+  
+  makeWrapperArgs = lib.optional (!stdenv.isDarwin) [ "--prefix PYTHONPATH : ${fusepy}/${fusepy.pythonModule.sitePackages}" ];
 
   pythonImportsCheck = [ "context_test" ];
 }
